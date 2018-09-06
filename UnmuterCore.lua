@@ -21,25 +21,30 @@ Unmuter.standardUnmuteTime = 2 --in seconds
 
 Unmuter.TimerFrame = CreateFrame("Frame")
 
-Unmuter.Unmute = function(Soundtime, PlayNewSound)
+Unmuter.Unmute = function(Soundtime, PlayNewSound, enableSFX)
+	local SFXSound_Old
 	local LastUpdate = 0
 
-	local AllSound_Old = GetCVar("Sound_EnableAllSound")
-	local SFXSound_Old = GetCVar("Sound_EnableSFX")
-		
 	--unmute if sound is off
+	local AllSound_Old = GetCVar("Sound_EnableAllSound")
 	if (AllSound_Old == "0") then
 		SetCVar("Sound_EnableAllSound", 1)
 	end
-	if (SFXSound_Old == "0") then
-		SetCVar("Sound_EnableSFX", 1)
+
+	-- only enable SFX if requested
+	if ( enableSFX == true ) then
+		SFXSound_Old = GetCVar("Sound_EnableSFX")
+		if (SFXSound_Old == "0") then
+			SetCVar("Sound_EnableSFX", 1)
+		end
 	end
-	
+
 	--play "new" sound when sound was off
 	if (SFXSound_Old == "0") or (AllSound_Old == "0") then
 		if ( PlayNewSound == true ) then
-			PlaySoundFile("Sound\\Interface\\iPlayerInviteA.ogg", "SFX")
+			PlaySoundFile("Sound\\Interface\\iPlayerInviteA.ogg", "Master")
 		end
+
 		Unmuter.TimerFrame:SetScript("OnUpdate", function(self, elapsed)
 			LastUpdate = LastUpdate + elapsed
 			if LastUpdate > Soundtime then
@@ -77,7 +82,7 @@ Unmuter.EventFrame:SetScript("OnEvent", function(self,event,...)
 			if ( GetBattlefieldStatus(i) == "confirm" ) then
 				if Unmuter.WasNotConfirm[i] then
 					Unmuter.WasNotConfirm[i] = false
-					Unmuter.Unmute(Unmuter.standardUnmuteTime, true)
+					Unmuter.Unmute(Unmuter.standardUnmuteTime, true, false)
 				end
 			else
 				Unmuter.WasNotConfirm[i] = true
@@ -89,12 +94,12 @@ Unmuter.EventFrame:SetScript("OnEvent", function(self,event,...)
 				for i = 1, #apps do
 					local _, _, _, _, isNew = C_LFGList.GetApplicantInfo(apps[i])
 					if ( isNew ) then
-						Unmuter.Unmute(2*Unmuter.standardUnmuteTime, false)
+						Unmuter.Unmute(2*Unmuter.standardUnmuteTime, false, true)
 						return
 					end
 				end
 			end
 	else
-		Unmuter.Unmute(Unmuter.standardUnmuteTime, true)
+		Unmuter.Unmute(Unmuter.standardUnmuteTime, true, false)
 	end
 end)

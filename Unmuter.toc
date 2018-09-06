@@ -2,7 +2,7 @@
 
 ## Title: Unmuter
 
-## Version: 0.17
+## Version: @project-version@
 
 ## Notes: Unmutes sounds when getting an invite (battleground, lfg tool, ...).
 
