@@ -1,0 +1,13 @@
+## Interface: 80000
+
+## Title: Unmuter
+
+## Version: 0.17
+
+## Notes: Unmutes sounds when getting an invite (battleground, lfg tool, ...).
+
+## Notes-deDE: Stellt dein Sound kurzzeitig an, sobald du eine Einladung bekommst (Schlachtfeld, LFG Tool, ...).
+
+## Author: |cffFF7D0AHoochie|r @EU-Dethecus
+
+UnmuterCore.lua

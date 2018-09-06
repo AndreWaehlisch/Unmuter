@@ -1,0 +1,50 @@
+Version 0.17
+	* only unmute on applicants pending if group leader or assistant
+
+Version 0.15
+	* new unmute: a lfg invite request from a new applicant is pending (and applicant list is refreshed)
+	* new unmute: someone requests to join party (e.g. from friend list)
+
+Version 0.14
+	* updated TOC to 8.0
+
+Version 0.13
+	* updated TOC to 6.0
+	* made all functions globally accessible
+
+Version 0.12
+	* updated TOC to 5.3
+
+Version 0.11
+	* updated TOC to 5.2
+
+Version 0.10
+	* updated TOC to 5.1
+	* added global port
+
+Version 0.9
+	* now also unmutes on pet battle invite
+
+Version 0.8
+	* TOC update for 5.0.4
+
+Version 0.7
+	* the value "MAX_BATTLEFIELD_QUEUES" was replaced by "GetMaxBattlefieldID()"
+
+Version 0.6
+	* TOC update for 4.3
+
+Version 0.5
+	* now also unmutes when you get a summon
+
+Version 0.4
+	* TOC update for 4.2
+
+Version 0.3
+	* now also unmutes when you get: ready check and duel request
+
+Version 0.2
+	* now also unmutes when you get a group invite
+
+Version 0.1
+	* initial release
