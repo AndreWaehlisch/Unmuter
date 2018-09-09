@@ -75,9 +75,11 @@ Unmuter.EventFrame:SetScript("OnEvent", function(self,event,...)
 	end
 end)
 
-QueueStatusMinimapButton.EyeHighlightAnim:HookScript("OnLoop", function(self, loopState)
+Unmuter.QueueStatusMinimapButtonFunc = function(self, loopState)
 	if ( Unmuter.enabled and QueueStatusMinimapButton_OnGlowPulse(self:GetParent()) ) then
 		Unmuter.Unmute(Unmuter.standardUnmuteTime, false, false)
 		PlaySound(SOUNDKIT.UI_GROUP_FINDER_RECEIVE_APPLICATION, "Master")
 	end
-end)
+end
+
+QueueStatusMinimapButton.EyeHighlightAnim:HookScript("OnLoop", Unmuter.QueueStatusMinimapButtonFunc)
