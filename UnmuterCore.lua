@@ -7,12 +7,10 @@ Unmuter.enabled = true
 --define events
 Unmuter.Events = {
 	["UPDATE_BATTLEFIELD_STATUS"] = 1, -- battleground and arena
-	["LFG_PROPOSAL_SHOW"] = 1, -- lfg tool
 	["PARTY_INVITE_REQUEST"] = 1, -- party invite
 	["DUEL_REQUESTED"] = 1, -- duel invite
 	["READY_CHECK"] = 1, -- ready check requested
 	["CONFIRM_SUMMON"]= 1, -- player is summoned
-	["PET_BATTLE_QUEUE_PROPOSE_MATCH"] = 1, -- pet battle invite
 	["GROUP_INVITE_CONFIRMATION"] = 1, -- someone requests to join party (e.g. from friend list)
 }
 
@@ -71,15 +69,6 @@ Unmuter.EventFrame:SetScript("OnEvent", function(self,event,...)
 		end
 	else
 		Unmuter.Unmute()
-		PlaySoundFile(567451, "Master")
+		PlaySoundFile("Sound\\Interface\\iPlayerInviteA.ogg", "Master")
 	end
 end)
-
-Unmuter.QueueStatusMinimapButtonFunc = function(self, loopState)
-	if ( Unmuter.enabled and QueueStatusMinimapButton_OnGlowPulse(self:GetParent()) ) then
-		Unmuter.Unmute(Unmuter.standardUnmuteTime, false, false)
-		PlaySound(SOUNDKIT.UI_GROUP_FINDER_RECEIVE_APPLICATION, "Master")
-	end
-end
-
-QueueStatusMinimapButton.EyeHighlightAnim:HookScript("OnLoop", Unmuter.QueueStatusMinimapButtonFunc)
