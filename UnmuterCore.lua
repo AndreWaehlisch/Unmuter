@@ -56,7 +56,7 @@ Unmuter.EventFrame:SetScript("OnEvent", function(self,event,...)
 	if not Unmuter.enabled then
 		return
 	end
-	
+
 	if ( event == "UPDATE_BATTLEFIELD_STATUS" ) then
 		for i = 1, GetMaxBattlefieldID() do
 			if ( GetBattlefieldStatus(i) == "confirm" ) then
