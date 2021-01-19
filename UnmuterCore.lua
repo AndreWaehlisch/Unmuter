@@ -40,7 +40,7 @@ Unmuter.Unmute = function()
 end
 
 Unmuter.WasNotConfirm = {}
-for i = 1, GetMaxBattlefieldID() do
+for i = 1, MAX_BATTLEFIELD_QUEUES do
 	Unmuter.WasNotConfirm[i] = true
 end
 
@@ -61,7 +61,7 @@ Unmuter.EventFrame:SetScript("OnEvent", function(self,event,...)
 				if Unmuter.WasNotConfirm[i] then
 					Unmuter.WasNotConfirm[i] = false
 					Unmuter.Unmute()
-					PlaySoundFile(567451, "Master")
+					PlaySoundFile("Sound\\Interface\\iPlayerInviteA.ogg", "Master")
 				end
 			else
 				Unmuter.WasNotConfirm[i] = true
