@@ -14,6 +14,8 @@ Unmuter.Events = {
 	["CONFIRM_SUMMON"]= 1, -- player is summoned
 	["PET_BATTLE_QUEUE_PROPOSE_MATCH"] = 1, -- pet battle invite
 	["GROUP_INVITE_CONFIRMATION"] = 1, -- someone requests to join party (e.g. from friend list)
+	["LFG_LIST_APPLICANT_UPDATED"] = 1, -- new applicant for your premade group
+	["LFG_LIST_APPLICATION_STATUS_UPDATED"] = 1, -- your application to a premade group was accepted
 }
 
 Unmuter.standardUnmuteTime = 2 -- in seconds
@@ -52,7 +54,7 @@ for i in pairs(Unmuter.Events) do
 	Unmuter.EventFrame:RegisterEvent(i)
 end
 
-Unmuter.EventFrame:SetScript("OnEvent", function(self,event,...)
+Unmuter.EventFrame:SetScript("OnEvent", function(self, event, ...)
 	if not Unmuter.enabled then
 		return
 	end
@@ -69,17 +71,17 @@ Unmuter.EventFrame:SetScript("OnEvent", function(self,event,...)
 				Unmuter.WasNotConfirm[i] = true
 			end
 		end
+	elseif ( event == "LFG_LIST_APPLICANT_UPDATED" ) then
+		Unmuter.Unmute()
+		PlaySoundFile(SOUNDKIT.UI_GROUP_FINDER_RECEIVE_APPLICATION, "Master")
+	elseif ( event == "LFG_LIST_APPLICATION_STATUS_UPDATED" ) then
+		local _, newStatus = ...
+		if ( newStatus == "invited" ) then
+			Unmuter.Unmute()
+			PlaySoundFile(567451, "Master")
+		end
 	else
 		Unmuter.Unmute()
 		PlaySoundFile(567451, "Master")
 	end
 end)
-
-Unmuter.QueueStatusMinimapButtonFunc = function(self, loopState)
-	if ( Unmuter.enabled and QueueStatusMinimapButton_OnGlowPulse(self:GetParent()) ) then
-		Unmuter.Unmute(Unmuter.standardUnmuteTime, false, false)
-		PlaySound(SOUNDKIT.UI_GROUP_FINDER_RECEIVE_APPLICATION, "Master")
-	end
-end
-
-QueueStatusMinimapButton.EyeHighlightAnim:HookScript("OnLoop", Unmuter.QueueStatusMinimapButtonFunc)
