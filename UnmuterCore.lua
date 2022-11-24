@@ -73,7 +73,7 @@ Unmuter.EventFrame:SetScript("OnEvent", function(self, event, ...)
 		end
 	elseif ( event == "LFG_LIST_APPLICANT_UPDATED" ) then
 		Unmuter.Unmute()
-		PlaySoundFile(SOUNDKIT.UI_GROUP_FINDER_RECEIVE_APPLICATION, "Master")
+		PlaySound(SOUNDKIT.UI_GROUP_FINDER_RECEIVE_APPLICATION, "Master")
 	elseif ( event == "LFG_LIST_APPLICATION_STATUS_UPDATED" ) then
 		local _, newStatus = ...
 		if ( newStatus == "invited" ) then
