@@ -65,7 +65,7 @@ Unmuter.EventFrame:SetScript("OnEvent", function(self, event, ...)
 				if Unmuter.WasNotConfirm[i] then
 					Unmuter.WasNotConfirm[i] = false
 					Unmuter.Unmute()
-					PlaySoundFile(567451, "Master")
+					PlaySound(SOUNDKIT.IG_PLAYER_INVITE, "Master")
 				end
 			else
 				Unmuter.WasNotConfirm[i] = true
@@ -78,10 +78,10 @@ Unmuter.EventFrame:SetScript("OnEvent", function(self, event, ...)
 		local _, newStatus = ...
 		if ( newStatus == "invited" ) then
 			Unmuter.Unmute()
-			PlaySoundFile(567451, "Master")
+			PlaySound(SOUNDKIT.IG_PLAYER_INVITE, "Master")
 		end
 	else
 		Unmuter.Unmute()
-		PlaySoundFile(567451, "Master")
+		PlaySound(SOUNDKIT.IG_PLAYER_INVITE, "Master")
 	end
 end)
