@@ -19,14 +19,8 @@ Unmuter.standardUnmuteTime = 2 -- in seconds
 Unmuter.TimerFrame = CreateFrame("Frame")
 
 Unmuter.Unmute = function()
-	-- store current settings for "Enable Sound" and "Sound in Background"
+	-- store current settings for "Enable Sound"
 	local AllSound_Old = GetCVar("Sound_EnableAllSound")
-	local BackgroundSound_Old = GetCVar("Sound_EnableSoundWhenGameIsInBG")
-
-	if ( BackgroundSound_Old == "0" ) then
-		-- turn on "Sound in Background"
-		SetCVar("Sound_EnableSoundWhenGameIsInBG", 1)
-	end
 
 	-- turn on "Enable Sound"
 	if ( AllSound_Old == "0" ) then
@@ -38,10 +32,6 @@ Unmuter.Unmute = function()
 				-- remute sound
 				if (AllSound_Old == "0") then
 					SetCVar("Sound_EnableAllSound", 0)
-				end
-
-				if ( BackgroundSound_Old == "0" ) then
-					SetCVar("Sound_EnableSoundWhenGameIsInBG", 0)
 				end
 
 				self:SetScript("OnUpdate", nil)
