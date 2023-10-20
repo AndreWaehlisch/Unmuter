@@ -69,12 +69,12 @@ Unmuter.EventFrame:SetScript("OnEvent", function(self, event, arg1, ...)
 				Unmuter.WasNotConfirm[i] = true
 			end
 		end
-	else if ( event == "LFG_LIST_APPLICATION_STATUS_UPDATED" ) then
+	elseif ( event == "LFG_LIST_APPLICATION_STATUS_UPDATED" ) then
 		if ( arg1 == "invited" ) then
 			Unmuter.Unmute()
 			PlaySoundFile("Sound\\Interface\\iPlayerInviteA.ogg", "Master")
 		end
-	end else
+	else
 		Unmuter.Unmute()
 		PlaySoundFile("Sound\\Interface\\iPlayerInviteA.ogg", "Master")
 	end
