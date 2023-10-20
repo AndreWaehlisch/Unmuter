@@ -12,6 +12,7 @@ Unmuter.Events = {
 	["READY_CHECK"] = 1, -- ready check requested
 	["CONFIRM_SUMMON"]= 1, -- player is summoned
 	["GROUP_INVITE_CONFIRMATION"] = 1, -- someone requests to join party (e.g. from friend list)
+	["LFG_LIST_APPLICATION_STATUS_UPDATED"] = 1, -- the LFG tool application status changed (declined/invited/etc)
 }
 
 Unmuter.standardUnmuteTime = 2 -- in seconds
@@ -51,7 +52,7 @@ for i in pairs(Unmuter.Events) do
 	Unmuter.EventFrame:RegisterEvent(i)
 end
 
-Unmuter.EventFrame:SetScript("OnEvent", function(self,event,...)
+Unmuter.EventFrame:SetScript("OnEvent", function(self, event, arg1, ...)
 	if not Unmuter.enabled then
 		return
 	end
@@ -68,7 +69,12 @@ Unmuter.EventFrame:SetScript("OnEvent", function(self,event,...)
 				Unmuter.WasNotConfirm[i] = true
 			end
 		end
-	else
+	else if ( event == "LFG_LIST_APPLICATION_STATUS_UPDATED" ) then
+		if ( arg1 == "invited" ) then
+			Unmuter.Unmute()
+			PlaySoundFile("Sound\\Interface\\iPlayerInviteA.ogg", "Master")
+		end
+	end else
 		Unmuter.Unmute()
 		PlaySoundFile("Sound\\Interface\\iPlayerInviteA.ogg", "Master")
 	end
