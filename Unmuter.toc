@@ -1,4 +1,4 @@
-## Interface: 100002
+## Interface: 110002
 
 ## Title: Unmuter
 
@@ -9,5 +9,7 @@
 ## Notes-deDE: Stellt dein Sound kurzzeitig an, sobald du eine Einladung bekommst (Schlachtfeld, LFG Tool, ...).
 
 ## Author: |cffFF7D0AHoochie|r @EU-Venoxis
+
+## IconTexture: 133014
 
 UnmuterCore.lua
